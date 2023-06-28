@@ -27,11 +27,10 @@ function Nav(props) {
     lis.push(
       <li key={t.id}>
         <a
-          id={t.id}
           href={"/read/" + t.id}
           onClick={(event) => {
             event.preventDefault();
-            props.onChangeMode(event.target.id);
+            props.onChangeMode(t.id);
           }}
         >
           {t.title}

@@ -31,7 +31,7 @@ function Nav(props) {
           href={"/read/" + t.id}
           onClick={(event) => {
             event.preventDefault();
-            props.onChangeMode(event.target.id);
+            props.onChangeMode(t.id);
           }}
         >
           {t.title}

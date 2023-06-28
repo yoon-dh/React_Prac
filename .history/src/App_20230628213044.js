@@ -26,16 +26,7 @@ function Nav(props) {
     let t = props.topics[i];
     lis.push(
       <li key={t.id}>
-        <a
-          id={t.id}
-          href={"/read/" + t.id}
-          onClick={(event) => {
-            event.preventDefault();
-            props.onChangeMode(event.target.id);
-          }}
-        >
-          {t.title}
-        </a>
+        <a href={"/read/" + t.id}>{t.title}</a>
       </li>
     );
   }
