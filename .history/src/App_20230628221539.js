@@ -87,13 +87,11 @@ function App() {
   const [mode, setMode] = useState("WELCOME");
   const [id, setId] = useState(null);
 
-  const [nextId, setNextId] = useState(4);
-
-  const [topics, setTopics] = useState([
+  const topics = [
     { id: 1, title: "html", body: "html is ..." },
     { id: 2, title: "css", body: "css is ..." },
     { id: 3, title: "js", body: "js is ..." },
-  ]);
+  ];
 
   let content = null;
   if (mode === "WELCOME") {
@@ -109,19 +107,7 @@ function App() {
     }
     content = <Article title={title} body={body}></Article>;
   } else if (mode === "CREATE") {
-    content = (
-      <Create
-        onCreate={(title, body) => {
-          const newTopic = { id: nextId, title: title, body: body };
-          const newTopics = [...topics];
-          newTopics.push(newTopic);
-          setTopics(newTopics);
-          setMode("READ");
-          setId(nextId);
-          setNextId(nextId + 1);
-        }}
-      ></Create>
-    );
+    content = <Create onCreate={(title, body) => {}}></Create>;
   }
 
   return (
