@@ -74,7 +74,7 @@ function App() {
     let title,
       body = null;
     for (let i = 0; i < topics.length; i++) {
-      if (topics[i].id === id) {
+      if ((topics[i].id = id)) {
         title = topics[i].title;
         body = topics[i].body;
       }
