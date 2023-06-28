@@ -83,43 +83,26 @@ function Create(props) {
   );
 }
 
-function Update(props) {
-  const [title, setTitle] = useState(props.title);
-  const [body, setBody] = useState(props.body);
+function Update() {
   return (
     <article>
-      <h2>Update</h2>
+      <h2>Create</h2>
       <form
         onSubmit={(event) => {
           event.preventDefault();
           const title = event.target.title.value;
           const body = event.target.body.value;
-          props.onUpdate(title, body);
+          props.onCreate(title, body);
         }}
       >
         <p>
-          <input
-            type="text"
-            name="title"
-            placeholder="title"
-            value={title}
-            onChange={(event) => {
-              setTitle(event.target.value);
-            }}
-          />
+          <input type="text" name="title" placeholder="title" />
         </p>
         <p>
-          <textarea
-            name="body"
-            placeholder="body"
-            value={body}
-            onChange={(event) => {
-              setBody(event.target.value);
-            }}
-          ></textarea>
+          <textarea name="body" placeholder="body"></textarea>
         </p>
         <p>
-          <input type="submit" value="Update" />
+          <input type="submit" value="create" />
         </p>
       </form>
     </article>
@@ -154,36 +137,17 @@ function App() {
     }
     content = <Article title={title} body={body}></Article>;
     contextControl = (
-      <>
-        <li>
-          <a
-            href={"/update/" + id}
-            onClick={(event) => {
-              event.preventDefault();
-              setMode("UPDATE");
-            }}
-          >
-            Update
-          </a>
-        </li>
-
-        <li>
-          <input
-            type="button"
-            value="Delete"
-            onClick={() => {
-              const newTopics = [];
-              for (let i = 0; i < topics.length; i++) {
-                if (topics[i].id !== id) {
-                  newTopics.push(topics[i]);
-                }
-              }
-              setTopics(newTopics);
-              setMode("WELCOME");
-            }}
-          />
-        </li>
-      </>
+      <li>
+        <a
+          href={"/update/" + id}
+          onClick={(event) => {
+            event.preventDefault();
+            setMode("UPDATE");
+          }}
+        >
+          Update
+        </a>
+      </li>
     );
   } else if (mode === "CREATE") {
     content = (
@@ -200,33 +164,7 @@ function App() {
       ></Create>
     );
   } else if (mode === "UPDATE") {
-    let title,
-      body = null;
-    for (let i = 0; i < topics.length; i++) {
-      if (topics[i].id === id) {
-        title = topics[i].title;
-        body = topics[i].body;
-      }
-    }
-    content = (
-      <Update
-        title={title}
-        body={body}
-        onUpdate={(title, body) => {
-          const newTopics = [...topics];
-          const updatedTopic = { id: id, title: title, body: body };
-
-          for (let i = 0; i < newTopics.length; i++) {
-            if (newTopics[i].id === id) {
-              newTopics[i] = updatedTopic;
-              break;
-            }
-          }
-          setTopics(newTopics);
-          setMode("READ");
-        }}
-      ></Update>
-    );
+    content = <Update></Update>;
   }
 
   return (

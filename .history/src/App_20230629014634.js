@@ -179,7 +179,6 @@ function App() {
                 }
               }
               setTopics(newTopics);
-              setMode("WELCOME");
             }}
           />
         </li>

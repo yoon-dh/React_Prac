@@ -178,8 +178,6 @@ function App() {
                   newTopics.push(topics[i]);
                 }
               }
-              setTopics(newTopics);
-              setMode("WELCOME");
             }}
           />
         </li>

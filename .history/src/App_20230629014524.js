@@ -174,12 +174,10 @@ function App() {
             onClick={() => {
               const newTopics = [];
               for (let i = 0; i < topics.length; i++) {
-                if (topics[i].id !== id) {
+                if (topics[i].id != id) {
                   newTopics.push(topics[i]);
                 }
               }
-              setTopics(newTopics);
-              setMode("WELCOME");
             }}
           />
         </li>
